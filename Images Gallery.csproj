@@ -1,0 +1,46 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Images_Gallery</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\lib\jquery-validation-unobtrusive\**" />
+    <Compile Remove="wwwroot\lib\jquery-validation\**" />
+    <Compile Remove="wwwroot\lib\jquery\**" />
+    <Content Remove="wwwroot\lib\jquery-validation-unobtrusive\**" />
+    <Content Remove="wwwroot\lib\jquery-validation\**" />
+    <Content Remove="wwwroot\lib\jquery\**" />
+    <EmbeddedResource Remove="wwwroot\lib\jquery-validation-unobtrusive\**" />
+    <EmbeddedResource Remove="wwwroot\lib\jquery-validation\**" />
+    <EmbeddedResource Remove="wwwroot\lib\jquery\**" />
+    <None Remove="wwwroot\lib\jquery-validation-unobtrusive\**" />
+    <None Remove="wwwroot\lib\jquery-validation\**" />
+    <None Remove="wwwroot\lib\jquery\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Home\Privacy.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.16" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.16">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.16" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.16">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\imagem\" />
+  </ItemGroup>
+
+</Project>

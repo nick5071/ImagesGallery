@@ -1,0 +1,48 @@
+﻿@model ImagemModel
+
+@if(TempData["MensagemErro"] != null)
+{
+    <div class="alert alert-danger text-dark" role="alert">
+        @TempData["MensagemErro"]
+    </div>
+}
+
+<form method="post" asp-action="ImportImage" asp-controller="Home" enctype="multipart/form-data" class="text-center mb-5">
+    <div class="input-group d-flex flex-column w-100">
+        <div class="card" style="width: 10rem; margin-left: 20px; margin-bottom: 20px; padding: 10px">
+            <img style="width: 140px; height: 140px" id="img"/>
+        </div>
+        <label class="text-start">
+            Nome:
+        </label>
+        <input type="text" class="mb-3" style="border: 1px solid gray; border-radius: 5px; height:40px" asp-for="Nome"/>
+        <input type="file" class="mb-3" name="foto" asp-for="CaminhoImagem" id="imageFile"/>
+
+        <div>
+            <button class="btn btn-secondary w-100 mb-2" type="submit">Importar</button>
+            <a class="btn btn-info w-100" type="submit" asp-action="Index" asp-controller="Home">Voltar</a>
+        </div>
+    </div>
+</form>
+
+<script>
+    const inputFile = document.querySelector('#imageFile');
+
+    inputFile.addEventListener("change", function (e) {
+        const inputTarget = e.target;
+        const file = inputTarget.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.addEventListener("load", function (e) {
+                const readerTarget = e.target;
+                const img = document.querySelector('#img')
+
+                img.src = readerTarget.result;
+            });
+
+            reader.readAsDataURL(file);
+        }
+    });
+</script>

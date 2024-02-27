@@ -1,0 +1,59 @@
+﻿@model IEnumerable<ImagemModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container mt-5">
+   <div class="input-group d-flex flex-column w-100">
+       <a class="btn btn-primary" asp-controller="Home" asp-action="ImportImage">Importar Imagem</a>
+   </div>
+
+   <div class="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-0 mt-5">
+
+        @if (Model != null)
+        {
+            @if (Model.Count() > 0)
+            {
+                @foreach (var imagem in Model)
+                {
+                    <div class="card" style="width : 10rem; margin-left: 20px; margin-bottom: 20px; padding: 10px"> 
+                        <img src="/imagem/@imagem.CaminhoImagem" class="carid-img-top" style="width: 140px; height: 140px"/>
+                        <div class="col text-center">
+                            <p>@imagem.Nome</p>
+                        </div>
+                        <a class="btn btn-outline-primary w-100 mt-3" asp-action="EditImage" asp-controller="Home" asp-route-id="@imagem.Id">Editar</a>
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal-@imagem.Id" class="btn btn-danger mt-2">
+                            Remover
+                        </button>
+                        <div class="modal fade" id="exampleModal-@imagem.Id" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Excluir Imagem</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <form method="post" action="@Url.Action("ExcluirPost", "Home")">
+                                        <div class="modal-body">
+                                            Deseja realmente excluir a imagem?
+                                            <input type="hidden" value="@imagem.Id" name="Id"/>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                                            <button type="submit" class="btn btn-danger">Excluir</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+        }
+
+        @if (!Model.Any())
+        {
+            <p>Nenhuma imagem cadastrada</p>
+        }
+
+   </div>
+</div>
